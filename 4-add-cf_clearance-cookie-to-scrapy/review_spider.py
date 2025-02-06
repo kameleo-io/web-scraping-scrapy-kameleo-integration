@@ -5,11 +5,6 @@ import json
 class ReviewSpider(scrapy.Spider):
     name = "review"
 
-    # Set up user agent
-    custom_settings = {
-        'USER_AGENT': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36"
-    }
-
     def start_requests(self):
         # Read cookies exported from Kameleo browser profile
         with open('../3-bypass-cloudflare-turnstile-with-Kameleo/cf_clearance_cookie.json', 'r') as file:
@@ -19,10 +14,14 @@ class ReviewSpider(scrapy.Spider):
         # Convert to Scrapy format
         cookies = {cookie["name"]: cookie["value"] for cookie in cookies_list}
 
+        with open("../3-bypass-cloudflare-turnstile-with-Kameleo/user_agent.txt", "r", encoding="utf-8") as file:
+            user_agent = file.readline().strip()
+
         # Add cookies to the request
         yield scrapy.Request(
             url="https://www.indeed.com/cmp/Burger-King/reviews",
-            cookies=cookies,
+            cookies=cookies,  # add the cf_clearance cooke
+            headers={"User-Agent": user_agent},  # dynamically set user-agent
             callback=self.parse
         )
 

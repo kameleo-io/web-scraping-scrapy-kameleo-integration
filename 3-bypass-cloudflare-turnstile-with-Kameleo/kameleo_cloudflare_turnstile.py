@@ -36,6 +36,11 @@ with sync_playwright() as playwright:
     context = browser.contexts[0]
     page = context.new_page()
 
+    user_agent = page.evaluate("navigator.userAgent")
+    print(f"Current User-Agent: {user_agent}")
+    with open("user_agent.txt", "w") as file:
+        file.write(user_agent)
+
     # Use any Playwright command to drive the browser
     # and enjoy full protection from bot detection products
     page.goto('https://www.indeed.com/cmp/Burger-King/reviews')
