@@ -17,6 +17,7 @@ client = KameleoLocalApiClient(
 # Search Chrome Base Profiles
 base_profiles = client.search_base_profiles(
     device_type='desktop',
+    os_family='windows',
     browser_product='chrome',
 )
 
@@ -30,6 +31,7 @@ create_profile_request = BuilderForCreateProfile \
 profile = client.create_profile(body=create_profile_request)
 
 # Start the Kameleo profile and connect with Playwright through CDP
+client.start_profile(profile.id)
 browser_ws_endpoint = f'ws://localhost:{kameleo_port}/playwright/{profile.id}'
 with sync_playwright() as playwright:
     browser = playwright.chromium.connect_over_cdp(endpoint_url=browser_ws_endpoint)
@@ -46,7 +48,7 @@ with sync_playwright() as playwright:
     page.goto('https://www.indeed.com/cmp/Burger-King/reviews')
 
 # Wait for 5 seconds
-time.sleep(5)
+time.sleep(15)
 
 # Stop the browser by stopping the Kameleo profile
 client.stop_profile(profile.id)

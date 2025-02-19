@@ -4,18 +4,24 @@ These examples help to showcase how to gather data efficiently from websites wit
 
 A more detailed description about this project is available on [our website](https://kameleo.io/blog/how-to-bypass-cloudflare-turnstile-with-scrapy).
 
-## 1-showcase-the-speed-of-scrapy
+## 1-a-showcase-the-speed-of-scrapy
 
 - I use [Scrapy](https://pypi.org/project/Scrapy/) to gather data from the [quotes.toscrape.com](https://quotes.toscrape.com/) website.
 - The spider goes over the 10 pages of data in **2.6 seconds** ensuring a really effective technique.
 
-## 2-compare-speed-with-headless-browser
+## 1-b-scrapy-cloudflare
+- I showcase that Scrapy is receiving `HTTPS 403 error message` when I try to scrape data from a website that is protected by an anti-bot system.
+
+## 2-a-compare-speed-with-headless-browser
 
 - In the second example I use [Playwright](https://playwright.dev/) to scrape the same dataset form the [quotes.toscrape.com](https://quotes.toscrape.com/) website.
-- The headless browser renders the page which makes the scraping slower. It takes about **6.4 seconds** to gather the data.
+- The headless browser needs to render the page that makes the scraping slower. It takes about **6.4 seconds** to gather the data.
+
+## 2-b-playwright-cloudflare
+- I showcase that playwright is receiving "infinite captcha" when I try to scrape data from a website that is protected by an anti-bot system.
 
 ---
-Headless browsers come handy when you scrape data from JavaScript heavy websites. When data is protected by anti-bot systems, the best you can do is to utilize an anti-detect browser. [Kameleo](https://kameleo.io/web-scraping?utm_medium=readme&utm_campaign=scrapy_kameleo) provides an undetectable web automation browser. This is not an open-source solution, however the platform provides unlimited fresh fingerprints, and ensures that their custom-built browsers (Chroma and Junglefox) are constantly updated to ensure, you stay on top of the anti-bot game without tiring maintenance overhead.
+Headless browsers come handy when you scrape data from JavaScript heavy websites, or you want to interact more with the website. When data is protected by anti-bot systems, the best you can do is to utilize an anti-detect browser. [Kameleo](https://kameleo.io/web-scraping?utm_medium=readme&utm_campaign=scrapy_kameleo) provides an undetectable web automation browser. This is not an open-source solution, however the platform provides unlimited fresh fingerprints, and ensures that their custom-built browsers (Chroma and Junglefox) are constantly updated to ensure, you stay on top of the anti-bot game without tiring maintenance overhead.
 
 In the second part of the demo we try to scrape data from the [review page of BurgerKing on indeed.com](https://www.indeed.com/cmp/Burger-King/reviews).
 

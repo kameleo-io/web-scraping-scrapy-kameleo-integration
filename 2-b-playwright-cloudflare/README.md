@@ -1,4 +1,4 @@
-# 2-compare-speed-with-headless-browser
+# 2-b-playwright-cloudflare
 
 Install playwright
 ```commandline
@@ -8,5 +8,5 @@ playwright install
 
 Run code
 ```commandline
-python headless.py
+python pw.py
 ```
